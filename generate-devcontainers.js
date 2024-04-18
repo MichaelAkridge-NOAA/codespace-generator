@@ -17,7 +17,7 @@ packages.forEach(pkg => {
   };
 
   // Directory for each package
-  const dir = `./devcontainer/${pkg.name}`;
+  const dir = `./.devcontainer/${pkg.name}`;
   if (!fs.existsSync(dir)){
     fs.mkdirSync(dir, { recursive: true });
   }
