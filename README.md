@@ -12,7 +12,7 @@ Deploy workflows in github repository where you need to set up Codespaces dynami
 - Note:
   - Current setup is a very basic example and modification of the github actions and the "generate-devcontainers.js" file is needed for devcontianer needs.
   - The actions use Org "nmfs-opensci" as an example
-### Enhance packages.json (and codesapce) via functions in the github actions like:
+### Enhance packages.json (and codesapce) via functions in the github actions(01-list-packages.yml) like so:
 ```
 function determineExtensions(name) {
     // Add logic to determine extensions based on the package name
@@ -22,6 +22,11 @@ function determineExtensions(name) {
 }
 function determinePorts(name) {
     // Add logic to determine ports based on the package name
+...
+
+}
+function determinePostCreateCommand(name) {
+    // Add logic to determine postCreateCommand based on the package name
 ...
 }
 
