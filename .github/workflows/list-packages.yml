@@ -1,4 +1,4 @@
-name: List and Save GitHub Packages
+name: 01 | List and Save GitHub Packages
 on:
   workflow_dispatch:
   # schedule:
