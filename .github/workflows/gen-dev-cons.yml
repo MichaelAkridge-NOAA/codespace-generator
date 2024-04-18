@@ -1,0 +1,35 @@
+name: Generate Dev Containers
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'packages.json'
+  workflow_dispatch:
+  # schedule:
+  #   - cron: '0 0 * * *' # Run daily
+jobs:
+  generate-devcontainer:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Generate devcontainer.json files
+        run: node generate-devcontainers.js
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
+          git add .
+          git commit -m "Update devcontainer configurations" || echo "No changes to commit"
+          git push
