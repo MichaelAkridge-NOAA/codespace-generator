@@ -1,0 +1,12 @@
+{
+  "name": "Environment for container-images/openscapes-python",
+  "image": "ghcr.io/nmfs-opensci/container-images/openscapes-python:latest",
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/bash"
+  },
+  "extensions": [],
+  "forwardPorts": [
+    8888
+  ],
+  "postCreateCommand": "echo 'Environment ready!'"
+}
