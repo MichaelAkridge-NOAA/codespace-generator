@@ -7,7 +7,7 @@ packages.forEach(pkg => {
   // Extract the part after "container-images/"
   const shortName = pkg.name.split('container-images/')[1];
   const devContainerConfig = {
-    name: `Environment for ${pkg.name}`,
+    name: `${shortName}`,
     image: `ghcr.io/nmfs-opensci/${pkg.name}:latest`,
     settings: { 
       "terminal.integrated.shell.linux": "/bin/bash"
