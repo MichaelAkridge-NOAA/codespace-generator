@@ -7,11 +7,79 @@ This project automates the setup of GitHub Codespaces by dynamically generating 
 
 ## Usage
 Deploy workflows in github repository where you need to set up Codespaces dynamically based on container images of a particular organization.
+- Note:
+  - Current setup is a very basic example and modification of the "generate-devcontainers.js" file is needed for projects specified devcontianer needs.
+  - Uses Org "nmfs-opensci" as an example 
 
 ## Github Actions
-1. 01-list-packages.yml - Lists all the available container packages from a specific github organization (nmfs-opensci) and saves to "packages.json" file 
-2. 02-gen-dev-cons.yml  - Generates devcontainer files based on github package container registry list. Runs the "generate-devcontainers.js" file
+### 01-list-packages.yml - Will list all the available container packages from a specific github organization (nmfs-opensci) and saves to "packages.json" file
+```
+name: 01 | List and Save GitHub Packages
+on:
+  workflow_dispatch:
+  # schedule:
+  #   - cron: '0 0 * * *' # Run daily
+jobs:
+  list-packages:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
 
+      - name: List packages and write to file
+        env:
+          GITHUB_TOKEN: ${{ secrets.GIT_API_TOKEN }}
+        run: |
+          echo "Listing container packages for the organization nmfs-opensci"
+    
+          # Fetch and save raw JSON
+          curl -L \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer $GITHUB_TOKEN" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/orgs/nmfs-opensci/packages?package_type=container" > packages.json
+
+      - name: Commit and push if changes
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
+          git add packages.json
+          git commit -m "Updated package list for GitHub Page using curl" || echo "No changes to commit"
+          git push
+```
+### 02-gen-dev-cons.yml  - Will generates devcontainer files based on github package container registry list(packages.json). Runs the "generate-devcontainers.js" file
+```
+const fs = require('fs');
+
+// Load the packages data
+const packages = JSON.parse(fs.readFileSync('packages.json', 'utf8'));
+
+packages.forEach(pkg => {
+  // Extract the part after "container-images/"
+  const shortName = pkg.name.split('container-images/')[1];
+  const devContainerConfig = {
+    name: `Environment for ${pkg.name}`,
+    image: `ghcr.io/nmfs-opensci/${pkg.name}:latest`,
+    settings: { 
+      "terminal.integrated.shell.linux": "/bin/bash"
+    },
+    extensions: [
+    ],
+    forwardPorts: [8888],
+    postCreateCommand: "echo 'Environment ready!'"
+  };
+
+  // Directory for each package
+  const dir = `./.devcontainer/${shortName}`;
+  if (!fs.existsSync(dir)){
+    fs.mkdirSync(dir, { recursive: true });
+  }
+
+  fs.writeFileSync(`${dir}/devcontainer.json`, JSON.stringify(devContainerConfig, null, 2));
+});
+
+console.log('Generated devcontainer.json files for all packages.');
+```
 ## Github Aciton Setup
 1. Setup Actions on Repo
     - Under Settings > Actions > General > Workflow Permissions > Enable Read and Write Permissions
@@ -21,10 +89,6 @@ Deploy workflows in github repository where you need to set up Codespaces dynami
 3. Add key to Repo
     - Under Repo, settings > secrets > actions > add key from step 2
     - Name it as 'GIT_API_TOKEN', or Update list-packages action env variable key name
-
-## Note
-Current setup is a very basic example and modification of the "generate-devcontainers.js" file is needed for projects specified devcontianer needs. 
-
 
 ----------
 #### Disclaimer
