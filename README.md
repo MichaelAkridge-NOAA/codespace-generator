@@ -10,9 +10,22 @@ This project automates the setup of GitHub Codespaces by dynamically generating 
 ## Usage
 Deploy workflows in github repository where you need to set up Codespaces dynamically based on container images of a particular organization.
 - Note:
-  - Current setup is a very basic example and modification of the "generate-devcontainers.js" file is needed for projects specified devcontianer needs.
-  - Uses Org "nmfs-opensci" as an example 
+  - Current setup is a very basic example and modification of the github actions and the "generate-devcontainers.js" file is needed for devcontianer needs.
+  - The actions use Org "nmfs-opensci" as an example
+### Enhance packages.json (and codesapce) via functions like:
+```
+function determineExtensions(name) {
+    // Add logic to determine extensions based on the package name
+    if (name.includes("python")) return ["ms-python.python"];
+    if (name.includes("r-base")) return ["ms-toolsai.jupyter"];
+    return [];
+}
+function determinePorts(name) {
+    // Add logic to determine ports based on the package name
+...
+}
 
+``` 
 ## Github Actions
 ### 01-list-packages.yml - Will list all the available container packages from a specific github organization (nmfs-opensci) and saves to "packages.json" file
 ```
