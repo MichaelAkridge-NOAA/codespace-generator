@@ -12,7 +12,7 @@ jobs:
 
       - name: List packages and write to file
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GIT_API_TOKEN }}
         run: |
           echo "Listing container packages for the organization nmfs-opensci"
     
