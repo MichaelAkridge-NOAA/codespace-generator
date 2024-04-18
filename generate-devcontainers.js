@@ -2,8 +2,10 @@ const fs = require('fs');
 
 // Load the packages data
 const packages = JSON.parse(fs.readFileSync('packages.json', 'utf8'));
-const shortName = pkg.name.split('container-images/')[1];
+
 packages.forEach(pkg => {
+  // Extract the part after "container-images/"
+  const shortName = pkg.name.split('container-images/')[1];
   const devContainerConfig = {
     name: `Environment for ${pkg.name}`,
     image: `ghcr.io/nmfs-opensci/${pkg.name}:latest`,
