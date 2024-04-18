@@ -1,3 +1,5 @@
+<img src="./docs/s01.png" align="right" alt="logo" width="400"/>
+
 # Codespace(DevContainer) Generator
 
 This project automates the setup of GitHub Codespaces by dynamically generating development container configurations (devcontainer.json) for each Docker container listed in a GitHub organization's package registry. 
