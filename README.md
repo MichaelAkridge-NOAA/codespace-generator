@@ -1,6 +1,6 @@
 # Codespace(DevContainer) Generator
 
-This project automates the setup of GitHub Codespaces by dynamically generating development container configurations (devcontainer.json) for each Docker container listed in a GitHub organization's package registry. The goal is to streamline the creation of tailored development environments, and allow developers to start coding with pre-configured, containerized setups.
+This project automates the setup of GitHub Codespaces by dynamically generating development container configurations (devcontainer.json) for each Docker container listed in a GitHub organization's package registry. 
 
 ## Contact:
 - Michael.Akridge@noaa.gov 
@@ -14,16 +14,17 @@ Deploy workflows in github repository where you need to set up Codespaces dynami
 
 ## Github Aciton Setup
 1. Setup Actions on Repo
-  - Under Settings > Actions > General > Workflow Permissions > Enable Read and Write Permissions
+    - Under Settings > Actions > General > Workflow Permissions > Enable Read and Write Permissions
 2. Setup API Key 
-  - https://github.com/settings/tokens
-  - generate a key that has at least "read:packages" permissions
+    - https://github.com/settings/tokens
+    - generate a key that has at least "read:packages" permissions
 3. Add key to Repo
-  - Under Repo, settings > secrets > actions > add key from step 2
-  - Name it as 'GIT_API_TOKEN', or Update list-packages action env variable key name
+    - Under Repo, settings > secrets > actions > add key from step 2
+    - Name it as 'GIT_API_TOKEN', or Update list-packages action env variable key name
 
 ## Note
-- Current setup is basic example and modification of the "generate-devcontainers.js" file is needed for projects specified devcontianer needs
+Current setup is a very basic example and modification of the "generate-devcontainers.js" file is needed for projects specified devcontianer needs. 
+
 
 ----------
 #### Disclaimer
