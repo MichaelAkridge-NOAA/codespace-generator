@@ -1,7 +1,6 @@
 # Codespace(DevContainer) Generator
 
-This project automates the setup of GitHub Codespaces by dynamically generating development container configurations (devcontainer.json) for each Docker container listed in a GitHub organization's package registry. 
-- The goal is to streamline the creation of tailored development environments, and allow developers to start coding with pre-configured, containerized setups.
+This project automates the setup of GitHub Codespaces by dynamically generating development container configurations (devcontainer.json) for each Docker container listed in a GitHub organization's package registry. The goal is to streamline the creation of tailored development environments, and allow developers to start coding with pre-configured, containerized setups.
 
 ## Contact:
 - Michael.Akridge@noaa.gov 
