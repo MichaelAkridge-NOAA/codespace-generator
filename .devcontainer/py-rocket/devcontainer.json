@@ -1,0 +1,12 @@
+{
+  "name": "py-rocket",
+  "image": "ghcr.io/nmfs-opensci/container-images/py-rocket:latest",
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/bash"
+  },
+  "extensions": [],
+  "forwardPorts": [
+    8888
+  ],
+  "postCreateCommand": "echo 'Environment ready!'"
+}

@@ -1,0 +1,12 @@
+{
+  "name": "arcgis",
+  "image": "ghcr.io/nmfs-opensci/container-images/arcgis:latest",
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/bash"
+  },
+  "extensions": [],
+  "forwardPorts": [
+    8888
+  ],
+  "postCreateCommand": "echo 'Environment ready!'"
+}
