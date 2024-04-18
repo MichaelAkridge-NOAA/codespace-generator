@@ -109,7 +109,8 @@ console.log('Generated devcontainer.json files for all packages.');
 3. Add key to Repo
     - Under Repo, settings > secrets > actions > add key from step 2
     - Name it as 'GIT_API_TOKEN', or Update list-packages action env variable key name
-
+## Note
+- Github actions are currently manually run. Update github actions to run on a schedule, on update of dockerfiles, or more
 
 ----------
 #### Disclaimer
