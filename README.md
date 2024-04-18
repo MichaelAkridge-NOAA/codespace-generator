@@ -1,4 +1,4 @@
-<img src="./docs/s01_sm.png" align="right" alt="logo" width="400"/>
+<img src="./docs/s01_sm.png" align="right" alt="logo" />
 
 # Codespace(DevContainer) Generator
 
