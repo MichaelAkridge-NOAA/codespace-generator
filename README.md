@@ -110,7 +110,7 @@ console.log('Generated devcontainer.json files for all packages.');
 ## Results
 - a folder and devcontainer file created for each image
 - example ".devcontainer/nmfs-opensci-python-base/devcontainer.json"
-``
+```
 {
   "name": "nmfs-opensci-python-base",
   "image": "ghcr.io/nmfs-opensci/container-images/nmfs-opensci-python-base:latest",
@@ -123,7 +123,7 @@ console.log('Generated devcontainer.json files for all packages.');
   ],
   "postCreateCommand": "echo 'Environment ready!'"
 }
-``
+```
 ## Github Aciton Setup
 1. Setup Actions on Repo
     - Under Settings > Actions > General > Workflow Permissions > Enable Read and Write Permissions
