@@ -5,7 +5,13 @@
 This project automates the setup of GitHub Codespaces by dynamically generating development container configurations (devcontainer.json) for each Docker container listed in a GitHub organization's package registry. 
 
 ## Contact:
-- Michael.Akridge@noaa.gov 
+- Michael.Akridge@noaa.gov
+# Table of Contents
+- [Usage](#usage)
+- [GitHub Actions](#github-actions)
+  - [01-list-packages.yml](#01-list-packagesyml)
+  - [02-gen-dev-cons.yml](#02-gen-dev-consyml)
+- [Results](#results)
 
 ## Usage
 Deploy workflows in github repository where you need to set up Codespaces dynamically based on container images of a particular organization.
@@ -100,6 +106,24 @@ packages.forEach(pkg => {
 
 console.log('Generated devcontainer.json files for all packages.');
 ```
+
+## Results
+- a folder and devcontainer file created for each image
+- example ".devcontainer/nmfs-opensci-python-base/devcontainer.json"
+``
+{
+  "name": "nmfs-opensci-python-base",
+  "image": "ghcr.io/nmfs-opensci/container-images/nmfs-opensci-python-base:latest",
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/bash"
+  },
+  "extensions": [],
+  "forwardPorts": [
+    8888
+  ],
+  "postCreateCommand": "echo 'Environment ready!'"
+}
+``
 ## Github Aciton Setup
 1. Setup Actions on Repo
     - Under Settings > Actions > General > Workflow Permissions > Enable Read and Write Permissions
